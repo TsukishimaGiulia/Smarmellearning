@@ -2,10 +2,10 @@ package domain;
 
 import java.util.Date;
 
-public class Uccello extends Animale {
+public abstract class AnimaleAlato extends Animale {
     private double aperturaAlare;
 
-    public Uccello(String nome, String ciboPref, int eta, Date dataEntrata, double peso, double altezza, double aperturaAlare) {
+    public AnimaleAlato(String nome, String ciboPref, int eta, Date dataEntrata, double peso, double altezza, double aperturaAlare) {
         super(nome, ciboPref, eta, dataEntrata, peso, altezza);
         this.aperturaAlare = aperturaAlare;
     }
@@ -16,5 +16,11 @@ public class Uccello extends Animale {
 
     public void setAperturaAlare(double aperturaAlare) {
         this.aperturaAlare = aperturaAlare;
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getName() + " " + super.toString() +
+                ", aperturaAlare=" + aperturaAlare;
     }
 }
