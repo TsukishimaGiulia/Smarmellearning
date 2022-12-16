@@ -7,7 +7,6 @@ import java.util.function.Predicate;
 
 public class Utility {
 
-
     public static Predicate<Animale> specieCodata = animale -> animale instanceof AnimaleCodato;
 
     public static Predicate<Animale> specieAlata = animale -> animale instanceof AnimaleAlato;
@@ -52,16 +51,18 @@ public class Utility {
     }
 
     // 1. ALTEZZA
-    public static Set<Animale> animaliPiuAlti(Predicate<Animale>specieAnimale){
-        Set<Animale> ris = new HashSet<>();
+    public static List<Animale> animaliPiuAlti(Predicate<Animale>specieAnimale){
+        List<Animale> ris = new ArrayList<>();
         double max= 0;
         List<Animale> animali = getSpecie(specieAnimale);
 
+        //troviamo il max
         for(Animale a : animali){
             if(a.getAltezza()>max)
                 max=a.getAltezza();
         }
 
+        //aggiungiamo al set tutti gli animali (di quella specie) per cui peso = max;
         for(Animale a : animali){
             if(a.getAltezza()==max)
                 ris.add(a);
@@ -70,8 +71,8 @@ public class Utility {
         return ris;
     }
 
-    public static Set<Animale> animaliPiuBassi(Predicate<Animale>specieAnimale){
-        Set<Animale> ris = new HashSet<>();
+    public static List<Animale> animaliPiuBassi(Predicate<Animale>specieAnimale){
+        List<Animale> ris = new ArrayList<>();
         double min= Double.MAX_VALUE;
         List<Animale> animali = getSpecie(specieAnimale);
 
@@ -89,18 +90,16 @@ public class Utility {
     }
 
     // 2. PESO
-    public static Set<Animale> animaliPiuPesanti(Predicate<Animale>specieAnimale){
-        Set<Animale> ris = new HashSet<>();
+    public static List<Animale> animaliPiuPesanti(Predicate<Animale>specieAnimale){
+        List<Animale> ris = new ArrayList<>();
         double max= 0;
         List<Animale> animali = getSpecie(specieAnimale);
 
-        //troviamo il max
         for(Animale a : animali){
             if(a.getPeso()>max)
                 max=a.getPeso();
         }
 
-        //aggiungiamo al set tutti gli animali (di quella specie) per cui peso = max;
         for(Animale a : animali){
             if(a.getPeso()==max)
                 ris.add(a);
@@ -109,18 +108,16 @@ public class Utility {
         return ris;
     }
 
-    public static Set<Animale> animaliPiuLeggeri(Predicate<Animale> specieAnimale){
-        Set<Animale> ris = new HashSet<>();
+    public static List<Animale> animaliPiuLeggeri(Predicate<Animale> specieAnimale){
+        List<Animale> ris = new ArrayList<>();
         List<Animale> animali = getSpecie(specieAnimale);
         double min = Double.MAX_VALUE;
 
-        //troviamo il min
         for(Animale a : animali){
             if(a.getPeso()<min)
                 min=a.getPeso();
         }
 
-        //aggiungiamo al set tutti gli animali (di quella specie) per cui peso = min;
         for(Animale a : animali){
             if(a.getPeso()==min)
                 ris.add(a);
@@ -141,8 +138,8 @@ public class Utility {
     }
 
     // 3. CODA PIU' LUNGA
-    public static Set<AnimaleCodato> animaliCodaMax(){
-        Set<AnimaleCodato> ris = new HashSet<>();
+    public static List<AnimaleCodato> animaliCodaMax(){
+        List<AnimaleCodato> ris = new ArrayList<>();
         double max = 0;
 
         for(Animale a : getSpecie(specieCodata)){
@@ -160,8 +157,8 @@ public class Utility {
     }
 
     // 4. APERTURA ALARE MAGGIORE
-    public static Set<AnimaleAlato> animaliAperturaAlareMax(){
-        Set<AnimaleAlato> ris = new HashSet<>();
+    public static List<AnimaleAlato> animaliAperturaAlareMax(){
+        List<AnimaleAlato> ris = new ArrayList<>();
         double max = 0;
 
         for(Animale a : getSpecie(specieAlata)){
