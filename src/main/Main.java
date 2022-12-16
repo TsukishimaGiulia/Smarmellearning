@@ -22,9 +22,16 @@ public class Main {
         //prendiAquile
         Predicate<Animale> specieAquila = animale -> animale instanceof Aquila;
 
+
+        Predicate<Animale> specieOrso = animale -> animale instanceof Orso;
+
         System.out.println("\n\nElenco animali:");
         for(Animale a : Utility.caricaAnimali())
             System.out.println(a);
+
+        System.out.println("\n\nOrsi più pesanti: ");
+        for(Animale a : Utility.animaliPiuPesanti(specieOrso))
+            System.out.println(a.toString());
 
 
         System.out.println("\n\nLeoni più bassi:");
