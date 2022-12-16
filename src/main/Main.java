@@ -16,12 +16,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Predicate<Animale> specieLeone = animale -> animale instanceof Leone;
+//      Predicate<Animale> specieLeone2 = animale -> animale instanceof Leone;
+        Predicate<Animale> specieLeone = Leone.class::isInstance;
         //prendiTigri
         Predicate<Animale> specieTigre = animale -> animale instanceof Tigre;
         //prendiAquile
         Predicate<Animale> specieAquila = animale -> animale instanceof Aquila;
-
 
         Predicate<Animale> specieOrso = animale -> animale instanceof Orso;
 
