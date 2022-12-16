@@ -68,6 +68,18 @@ public class Utility {
                 ris.add(a);
         }
 
+        // altro modo
+        /*
+        for(Animale a : getSpecie(specieAnimale)){
+            if(a.getAltezza()>max
+                ris.clear();
+                ris.add(a);
+                max = a.getAltezza();
+            } else if (a.getAltezza()==man) {
+                ris.add(a);
+            }
+        }*/
+
         return ris;
     }
 
@@ -123,17 +135,6 @@ public class Utility {
                 ris.add(a);
         }
 
-        // altro modo
-        /*
-        for(Animale a : caricaAnimali()){
-            if(a.getPeso()<min){
-                ris.clear();
-                ris.add(a);
-                min = a.getPeso();
-            } else if (a.getPeso()==min) {
-                ris.add(a);
-            }
-        }*/
         return ris;
     }
 
