@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Date;
 
-public class AnimaleCodato extends Animale {
+public abstract class AnimaleCodato extends Animale {
 
     private double lunghezzaCoda;
 
