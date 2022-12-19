@@ -4,6 +4,7 @@ import domain.*;
 import domain.Animale;
 import utility.Utility;
 
+import java.util.Collections;
 import java.util.function.Predicate;
 
 public class Main {
@@ -25,36 +26,37 @@ public class Main {
 
         Predicate<Animale> specieOrso = animale -> animale instanceof Orso;
 
-        System.out.println("\n\nElenco animali:");
-        for(Animale a : Utility.caricaAnimali())
-            System.out.println(a);
+//        System.out.println("\n\nElenco animali:");
+//        for(Animale a : Utility.caricaAnimali("animali"))
+//            System.out.println(a);
 
-        System.out.println("\n\nOrsi più pesanti: ");
-        for(Animale a : Utility.animaliPiuPesanti(specieOrso))
-            System.out.println(a.toString());
-
-
-        System.out.println("\n\nLeoni più bassi:");
-        for(Animale a : Utility.animaliPiuBassi(specieLeone))
-            System.out.println(a.toString());
+//        System.out.println("\n\nOrsi più pesanti: ");
+//        for(Animale a : Utility.animaliPiuPesanti(specieOrso))
+//            System.out.println(a.toString());
+//
+//
+//        System.out.println("\n\nLeoni più bassi:");
+//        for(Animale a : Utility.animaliPiuBassi(specieLeone))
+//            System.out.println(a.toString());
 
 
         System.out.println("\n\nTigri più alte:");
-        for(Animale a : Utility.animaliPiuAlti(specieTigre))
+        for(Animale a : Utility.animaliPiuAlti2("tigri"))
             System.out.println(a.toString());
 
         System.out.println("\n\nAquile più alte:");
-        for(Animale a : Utility.animaliPiuAlti(specieAquila))
+        for(Animale a : Utility.animaliPiuAlti2("aquile"))
             System.out.println(a.toString());
 
 
-        System.out.println("\n\nAnimali con coda più lunga:");
-        for(AnimaleCodato a : Utility.animaliCodaMax())
-            System.out.println(a.toString());
+//        System.out.println("\n\nAnimali con coda più lunga:");
+//        for(AnimaleCodato a : Utility.animaliCodaMax())
+//            System.out.println(a.toString());
+//
+//
+//        System.out.println("\n\nAnimali con maggiore apertura alare:");
+//        for(AnimaleAlato a :Utility.animaliAperturaAlareMax())
+//            System.out.println(a.toString());
 
-
-        System.out.println("\n\nAnimali con maggiore apertura alare:");
-        for(AnimaleAlato a :Utility.animaliAperturaAlareMax())
-            System.out.println(a.toString());
     }
 }
