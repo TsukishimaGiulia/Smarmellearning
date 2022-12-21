@@ -22,7 +22,7 @@ public abstract class AnimaleCodato extends Animale {
 
     @Override
     public String toString() {
-        return this.getClass().getName() + " " + super.toString() +
+        return this.getClass().getSimpleName() + " " + super.toString() +
                 ", lunghezzaCoda=" + lunghezzaCoda;
     }
 }

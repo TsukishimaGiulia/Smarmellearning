@@ -5,6 +5,8 @@ import domain.*;
 import java.util.*;
 
 public class Cerca {
+    private Cerca() {
+    }
 
     // carico specie singole
 
@@ -51,7 +53,7 @@ public class Cerca {
     }
 
     // raggruppo specie codate/alate
-    // [E' un po' scocciante dover creare i gruppi e la mappa manualmente"]
+    // [E' un po' scocciante dover creare i gruppi e la mappa manualmente]
     public static List<AnimaleCodato> codati(){
         List<AnimaleCodato> ris = new ArrayList<>();
 
@@ -69,7 +71,7 @@ public class Cerca {
 
     // Mappa per permettere la scelta della specie. Problema (nel branch prova): anche se il generic di List extends Animale, ritorna come se fosse una lista di Animale, quindi se invece sono Codati, non riesce ad accedere alle proprietà specifiche: per questo sotto ho dovuto usare direttamente un List<AnimaleCodato>
     public static Map<String,List<? extends Animale>> mappaAnimali(){
-        List<Animale> animali = new ArrayList<Animale>();
+        List<Animale> animali = new ArrayList<>();
         Map<String, List<? extends Animale>> ris = new HashMap<>();
 
         animali.addAll(codati());
@@ -91,16 +93,18 @@ public class Cerca {
         List<Animale> ris = new ArrayList<>();
         double max= 0;
 
-        for(Animale a : mappaAnimali().get(animali)){
-            if(a.getAltezza()>max)
-                max=a.getAltezza();
-        }
+        List<? extends Animale> animaliTrovati = mappaAnimali().get(animali);
+        if(animaliTrovati!=null){
+            for(Animale a : animaliTrovati){
+                if(a.getAltezza()>max)
+                    max=a.getAltezza();
+            }
 
-        for(Animale a : mappaAnimali().get(animali)){
-            if(a.getAltezza()==max)
-                ris.add(a);
+            for(Animale a : mappaAnimali().get(animali)){
+                if(a.getAltezza()==max)
+                    ris.add(a);
+            }
         }
-
         return ris;
     }
 
@@ -108,16 +112,18 @@ public class Cerca {
         List<Animale> ris = new ArrayList<>();
         double min= Double.MAX_VALUE;
 
-        for(Animale a : mappaAnimali().get(animali)){
-            if(a.getAltezza()<min)
-                min=a.getAltezza();
-        }
+        List<? extends Animale> animaliTrovati = mappaAnimali().get(animali);
+        if(animaliTrovati!=null) {
+            for (Animale a : animaliTrovati) {
+                if (a.getAltezza() < min)
+                    min = a.getAltezza();
+            }
 
-        for(Animale a : mappaAnimali().get(animali)){
-            if(a.getAltezza()==min)
-                ris.add(a);
+            for (Animale a : mappaAnimali().get(animali)) {
+                if (a.getAltezza() == min)
+                    ris.add(a);
+            }
         }
-
         return ris;
     }
 
@@ -127,16 +133,18 @@ public class Cerca {
         List<Animale> ris = new ArrayList<>();
         double max= 0;
 
-        for(Animale a : mappaAnimali().get(animali)){
-            if(a.getPeso()>max)
-                max=a.getPeso();
-        }
+        List<? extends Animale> animaliTrovati = mappaAnimali().get(animali);
+        if(animaliTrovati!=null) {
+            for (Animale a : animaliTrovati) {
+                if (a.getPeso() > max)
+                    max = a.getPeso();
+            }
 
-        for(Animale a : mappaAnimali().get(animali)){
-            if(a.getPeso()==max)
-                ris.add(a);
+            for (Animale a : mappaAnimali().get(animali)) {
+                if (a.getPeso() == max)
+                    ris.add(a);
+            }
         }
-
         return ris;
     }
 
@@ -145,32 +153,35 @@ public class Cerca {
         List<Animale> ris = new ArrayList<>();
         double min = Double.MAX_VALUE;
 
-        for(Animale a : mappaAnimali().get(animali)){
-            if(a.getPeso()<min)
-                min=a.getPeso();
-        }
+        List<? extends Animale> animaliTrovati = mappaAnimali().get(animali);
+        if(animaliTrovati!=null) {
+            for (Animale a : animaliTrovati) {
+                if (a.getPeso() < min)
+                    min = a.getPeso();
+            }
 
-        for(Animale a : mappaAnimali().get(animali)){
-            if(a.getPeso()==min)
-                ris.add(a);
+            for (Animale a : mappaAnimali().get(animali)) {
+                if (a.getPeso() == min)
+                    ris.add(a);
+            }
         }
-
         return ris;
     }
 
     // 3. CODA PIU' LUNGA
 
-    public static List<AnimaleCodato> animaliCodaMax(){
+    public static List<AnimaleCodato> animaliCodaMax() {
         List<AnimaleCodato> ris = new ArrayList<>();
         List<AnimaleCodato> animaliCodati = codati();   // 'sta cosa mi disturba: se volessi avere i leoni con coda max (fra i leoni)?
         double max = 0;
 
-        for(AnimaleCodato ac : animaliCodati){
-            if(ac.getLunghezzaCoda()>max){
+        // avevo messo un if animaliCodati!=null, ma effettivamente SL mi indicava che non poteva essere null; al massimo, suppongo, vuota, visto che in codati() cmq inizializzo List, prima di ritornarla
+        for (AnimaleCodato ac : animaliCodati) {
+            if (ac.getLunghezzaCoda() > max) {
                 ris.clear();
                 ris.add(ac);
                 max = ac.getLunghezzaCoda();
-            } else if (ac.getLunghezzaCoda()==max) {
+            } else if (ac.getLunghezzaCoda() == max) {
                 ris.add(ac);
             }
         }
@@ -179,21 +190,21 @@ public class Cerca {
     }
 
     // 4. APERTURA ALARE MAGGIORE
-    public static List<AnimaleAlato> animaliAperturaAlareMax(){
+    public static List<AnimaleAlato> animaliAperturaAlareMax() {
         List<AnimaleAlato> ris = new ArrayList<>();
         List<AnimaleAlato> animaliAlati = alati();
 
         double max = 0;
 
-        for(AnimaleAlato aa : animaliAlati){
-            if(aa.getAperturaAlare()>max){
-                ris.clear();
-                ris.add(aa);
-                max = aa.getAperturaAlare();
-            } else if (aa.getAperturaAlare()==max) {
-                ris.add(aa);
+            for (AnimaleAlato aa : animaliAlati) {
+                if (aa.getAperturaAlare() > max) {
+                    ris.clear();
+                    ris.add(aa);
+                    max = aa.getAperturaAlare();
+                } else if (aa.getAperturaAlare() == max) {
+                    ris.add(aa);
+                }
             }
-        }
         return ris;
     }
 

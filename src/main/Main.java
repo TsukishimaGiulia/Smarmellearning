@@ -18,9 +18,9 @@ public class Main {
         for(Animale a : Cerca.mappaAnimali().get("animali"))
             System.out.println(a);
 
-//        System.out.println("\n\nOrsi più alti:");
-//        for(Animale a : Cerca.animaliPiuAlti("osi"))
-//            System.out.println(a.toString());
+        System.out.println("\n\nOrsi più alti:");
+        for(Animale a : Cerca.animaliPiuAlti("osi"))
+            System.out.println(a.toString());
 //        lancia NPE
 
         System.out.println("\n\nLeoni più bassi:");
